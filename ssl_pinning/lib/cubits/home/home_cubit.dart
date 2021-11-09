@@ -1,3 +1,4 @@
+import 'package:catcher/catcher.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,8 +17,10 @@ class HomeCubit extends Cubit<HomeState> {
       final catUrl = (response.data as Map<String, dynamic>)['url'];
 
       emit(state.copyWith(catUrl: catUrl, isLoading: false));
-    } catch (e) {
+    } catch (e, s) {
       emit(state.copyWith(isLoading: false));
+      //rethrow;
+      Catcher.reportCheckedError(e, s);
     }
   }
 }

@@ -33,6 +33,10 @@ Dio initializeDio(AppConfig config) {
     final secureContext = SecurityContext();
     secureContext.setTrustedCertificatesBytes(config.apiCert);
     final client = HttpClient(context: secureContext);
+    // client.badCertificateCallback =
+    //     (X509Certificate cert, String host, int port) {
+    //   return false;
+    // };
     return client;
   };
 

@@ -1,3 +1,4 @@
+import 'package:catcher/catcher.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,18 +20,28 @@ class SslPinningApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<EnvironmentCubit>(
-      create: (_) => EnvironmentCubit(rootContainer: initialRootContainer),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => EnvironmentCubit(rootContainer: initialRootContainer),
+        ),
+        BlocProvider<FraudNotificatorCubit>(
+            create: (_) => FraudNotificatorCubit()),
+      ],
       child: BlocBuilder<EnvironmentCubit, EnvironmentState>(
         builder: (context, state) {
           return MaterialApp(
-            key: ValueKey<RootContainer>(state.rootContainer),
+            navigatorKey: Catcher.navigatorKey,
             title: 'Ssl pinning Demo',
             theme: ThemeData(primarySwatch: Colors.blue),
+            // onGenerateRoute: (settings) =>
+            //     MaterialPageRoute(builder: (_) => Container()),
+            // builder: (context, child) {
+            //   return
+            // },
             home: MultiProvider(
+              key: ValueKey<RootContainer>(state.rootContainer),
               providers: [
-                BlocProvider<FraudNotificatorCubit>(
-                    create: (_) => FraudNotificatorCubit()),
                 Provider<Dio>.value(value: state.rootContainer.dio),
                 Provider<Environment>.value(
                     value: state.rootContainer.environment),

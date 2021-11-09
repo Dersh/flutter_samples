@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  catcher: ^0.6.9
   cupertino_icons: ^1.0.2
   dio: ^4.0.1
   fancy_shimmer_image: ^2.0.0+2
