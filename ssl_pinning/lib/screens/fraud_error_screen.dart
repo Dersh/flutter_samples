@@ -8,7 +8,10 @@ class FraudErrorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
         body: Center(
-      child: Text('Fraud exception'),
+      child: Text(
+        'Здесь описание того, что делать пользователю в случае несоответствия сертификата',
+        textAlign: TextAlign.center,
+      ),
     ));
   }
 }

@@ -34,11 +34,6 @@ class SslPinningApp extends StatelessWidget {
             navigatorKey: Catcher.navigatorKey,
             title: 'Ssl pinning Demo',
             theme: ThemeData(primarySwatch: Colors.blue),
-            // onGenerateRoute: (settings) =>
-            //     MaterialPageRoute(builder: (_) => Container()),
-            // builder: (context, child) {
-            //   return
-            // },
             home: MultiProvider(
               key: ValueKey<RootContainer>(state.rootContainer),
               providers: [

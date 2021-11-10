@@ -2,9 +2,8 @@ import 'package:ssl_pinning/root/models/config.dart';
 
 enum Environment { prod, dev }
 
-/// Extension on [Environment] to return [Config]
 extension EnvironmentConfig on Environment {
-  /// Returns [Config] associated with [Environment]
+  /// Выдает конфигурацию относительно окружения
   AppConfig get config {
     switch (this) {
       case Environment.prod:

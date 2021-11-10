@@ -1,8 +1,9 @@
+/// Конфигурация приложения
 class AppConfig {
-  /// Backend api url, used as base url in Dio
+  /// Url, который будет использовать Dio
   final String apiUrl;
 
-  /// Trusted certification for ssl pinning
+  /// Сертификат бэкенда, которому мы можем проверять
   final List<int> apiCert;
 
   const AppConfig({required this.apiUrl, required this.apiCert});
@@ -12,12 +13,17 @@ class AppConfig {
     apiCert: _apiCert,
   );
 
+  /// В контексте примера у dev окружения будет несовпадающий сертификат
+  /// Примечание: сертификат должен быть валиден, иначе при настройке dio бросится TlsException
+  /// И в дальнейшем все запросы будут проходить без проверки серта
   static const dev = AppConfig(
     apiUrl: 'https://thatcopy.pw',
     apiCert: _apiFailCert,
   );
 }
 
+/// Сертификат храним в исходном коде для большей безопасности, нежели чем в файле
+/// После компиляции достаточно проблематично подменить сертификат
 const _apiCert = <int>[
   45,
   45,

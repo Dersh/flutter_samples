@@ -8,19 +8,18 @@ import 'package:ssl_pinning/root/models/root_container.dart';
 
 import 'app.dart';
 
-/// General function for initialize main
+/// Инициализация приложения
 Future<void> runMain(Environment environment) async {
   WidgetsFlutterBinding.ensureInitialized();
   final container = await rootInitializer(environment);
 
-  runZonedGuarded(() {
-    final debugOptions = CatcherOptions(AppReportMode(), []);
-    final releaseOptions = CatcherOptions(AppReportMode(), []);
-    Catcher(
-      rootWidget: SslPinningApp(initialRootContainer: container),
-      debugConfig: debugOptions,
-      releaseConfig: releaseOptions,
-      enableLogger: false,
-    );
-  }, (error, stackTrace) {});
+  final debugOptions = CatcherOptions(AppReportMode(), []);
+  final releaseOptions = CatcherOptions(AppReportMode(), []);
+
+  Catcher(
+    rootWidget: SslPinningApp(initialRootContainer: container),
+    debugConfig: debugOptions,
+    releaseConfig: releaseOptions,
+    enableLogger: false,
+  );
 }

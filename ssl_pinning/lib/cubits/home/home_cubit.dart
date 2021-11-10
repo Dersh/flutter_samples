@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'home_state.dart';
 
+/// ОТвечает за логику Home страницы
 class HomeCubit extends Cubit<HomeState> {
   final Dio dio;
 
@@ -19,7 +20,6 @@ class HomeCubit extends Cubit<HomeState> {
       emit(state.copyWith(catUrl: catUrl, isLoading: false));
     } catch (e, s) {
       emit(state.copyWith(isLoading: false));
-      //rethrow;
       Catcher.reportCheckedError(e, s);
     }
   }

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ssl_pinning/cubits/fraud_notificator/fraud_notificator_cubit.dart';
 
+/// Отображает отчеты, которые словил Catcher
 class AppReportMode extends ReportMode {
   AppReportMode();
 
@@ -14,6 +15,8 @@ class AppReportMode extends ReportMode {
   Future<void> requestAction(Report report, BuildContext? context) async {
     super.onActionConfirmed(report);
     final error = report.error;
+
+    /// HandshakeException - тип исключения, который бросает Dio при несоотвествии сертификата
     if (error is DioError && error.error is HandshakeException) {
       context!.read<FraudNotificatorCubit>().toggleFraud();
     }
